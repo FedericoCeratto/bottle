@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: debian:unstable
+    steps:
+      - checkout
+      - run:
+          command: |
+            apt-get update -q
+            apt-get install -y --no-install-recommends python3 python3-requests python3-jinja2 python3-mako python3-paste python3-tornado python3-werkzeug tox
+            tox -e py37
